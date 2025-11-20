@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-brand-dark py-12">
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <LogoMark className="h-10 w-10 opacity-70" />
+          <LogoMark className="h-20 w-20 opacity-70" />
         </div>
         
         <p className="text-sm text-gray-500 text-center md:text-right">
