@@ -1,15 +1,46 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 export function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
+  // REPLACE "YOUR_FORMSPREE_ID" WITH THE ID YOU GET FROM FORMSPREE.IO
+  // Example: const [state, handleSubmit] = useForm("xzyqjklm");
+  const [state, handleSubmit] = useForm("YOUR_FORMSPREE_ID");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted");
-    setSubmitted(true);
-  };
+  if (state.succeeded) {
+    return (
+      <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
+         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark/90 pointer-events-none" />
+         <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="mx-auto max-w-xl rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-8 text-center">
+              <h3 className="text-xl font-bold text-white">Thanks for your interest!</h3>
+              <p className="mt-2 text-gray-400">We&apos;ll be in touch shortly with more information.</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="mt-6 text-sm text-brand-gold hover:underline"
+              >
+                Send another response
+              </button>
+            </div>
+             {/* Direct Contact Links (Repeated here so they are still accessible after submit) */}
+            <div className="mt-16 border-t border-white/10 pt-12">
+                <div className="flex flex-col items-center justify-center gap-6 text-center">
+                    <h3 className="text-lg font-semibold text-white">Contact Us directly</h3>
+                    <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
+                    <a href="mailto:paz@logiqore.io" className="group flex items-center gap-3 text-gray-400 transition-colors hover:text-brand-gold">
+                        <span className="text-lg">paz@logiqore.io</span>
+                    </a>
+                    <a href="tel:0472520000" className="group flex items-center gap-3 text-gray-400 transition-colors hover:text-brand-gold">
+                        <span className="text-lg">0472 520 000</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+         </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
@@ -26,18 +57,6 @@ export function ContactSection() {
         </div>
 
         <div className="mx-auto mt-12 max-w-xl">
-          {submitted ? (
-            <div className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-8 text-center">
-              <h3 className="text-xl font-bold text-white">Thanks for your interest!</h3>
-              <p className="mt-2 text-gray-400">We&apos;ll be in touch shortly with more information.</p>
-              <button 
-                onClick={() => setSubmitted(false)}
-                className="mt-6 text-sm text-brand-gold hover:underline"
-              >
-                Send another response
-              </button>
-            </div>
-          ) : (
             <form onSubmit={handleSubmit} className="space-y-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">
@@ -46,10 +65,12 @@ export function ContactSection() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
                   className="mt-2 block w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-brand-gold focus:ring-brand-gold sm:text-sm focus:outline-none focus:ring-1"
                   placeholder="geologist@company.com"
                 />
+                <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-sm text-red-400" />
               </div>
 
               <div>
@@ -59,6 +80,7 @@ export function ContactSection() {
                 <input
                   type="text"
                   id="role"
+                  name="role"
                   className="mt-2 block w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-brand-gold focus:ring-brand-gold sm:text-sm focus:outline-none focus:ring-1"
                   placeholder="Senior Geologist at Mining Corp"
                 />
@@ -70,20 +92,22 @@ export function ContactSection() {
                 </label>
                 <textarea
                   id="comments"
+                  name="message"
                   rows={4}
                   className="mt-2 block w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-brand-gold focus:ring-brand-gold sm:text-sm focus:outline-none focus:ring-1"
                   placeholder="Tell us about your current challenges..."
                 />
+                <ValidationError prefix="Message" field="message" errors={state.errors} className="mt-1 text-sm text-red-400" />
               </div>
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-brand-gold px-8 py-3.5 text-base font-bold text-brand-dark transition-all hover:bg-brand-gold-glow hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+                disabled={state.submitting}
+                className="w-full rounded-full bg-brand-gold px-8 py-3.5 text-base font-bold text-brand-dark transition-all hover:bg-brand-gold-glow hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Request Early Access
+                {state.submitting ? "Sending..." : "Request Early Access"}
               </button>
             </form>
-          )}
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-12">
@@ -121,4 +145,3 @@ export function ContactSection() {
     </section>
   );
 }
-
