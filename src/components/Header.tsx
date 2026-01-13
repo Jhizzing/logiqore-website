@@ -10,13 +10,16 @@ export function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-          <Link href="#products" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
+          <Link href="/#products" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
             Products
           </Link>
-          <Link href="#why" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
+          <Link href="/utilities/truethick" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
+            Utilities
+          </Link>
+          <Link href="/#why" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
             Why LogiQore
           </Link>
-          <Link href="#geologists" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
+          <Link href="/#geologists" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
             For Geologists
           </Link>
         </nav>
@@ -29,7 +32,7 @@ export function Header() {
             Request early access
           </Link>
           {/* Mobile Menu Placeholder - can be expanded if needed, simplified for MVP */}
-          <Link 
+          <Link
             href="#contact"
             className="md:hidden text-sm font-medium text-brand-gold"
           >
