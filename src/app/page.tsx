@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ProductsSection } from "@/components/ProductsSection";
+import { TrueThickPromo } from "@/components/TrueThickPromo";
 import { WhySection } from "@/components/WhySection";
 import { ForGeologistsSection } from "@/components/ForGeologistsSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <Hero />
       <ProductsSection />
+      <TrueThickPromo />
       <WhySection />
       <ForGeologistsSection />
       <ContactSection />
