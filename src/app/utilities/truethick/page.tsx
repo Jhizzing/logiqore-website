@@ -59,6 +59,9 @@ export default function TrueThickPage() {
                                 display: "block",
                             }}
                             title="TrueThick Streamlit App"
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                            referrerPolicy="no-referrer"
+                            loading="lazy"
                         ></iframe>
                     </div>
                 </div>
