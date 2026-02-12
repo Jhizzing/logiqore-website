@@ -50,7 +50,7 @@ export default function TrueThickPage() {
 
                     <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-1 backdrop-blur-sm shadow-2xl">
                         <iframe
-                            src="https://truethick-57m8oofqscnacn6mhoq4wj.streamlit.app/?embed=true"
+                            src="/truethick/index.html"
                             style={{
                                 height: "900px",
                                 width: "100%",
@@ -58,7 +58,7 @@ export default function TrueThickPage() {
                                 borderRadius: "12px",
                                 display: "block",
                             }}
-                            title="TrueThick Streamlit App"
+                            title="TrueThick Utility App"
                             sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                             referrerPolicy="no-referrer"
                             loading="lazy"
