@@ -10,7 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1,
     },
-    // Add more pages here if you create them (e.g. /privacy, /blog)
+    {
+      url: `${baseUrl}/utilities/truethick`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ]
 }
 
