@@ -1,10 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
 const products = [
   {
     id: "qaqc",
-    name: "LogiQore QAQC Reporter",
+    name: "LogiQore Reporter",
     badge: "QAQC automation",
+    href: "/products/reporter",
     description: [
       "Upload assay and pXRF data from labs or databases.",
       "Generate control charts, bias plots, duplicates stats.",
@@ -69,6 +71,14 @@ export function ProductsSection() {
                   </li>
                 ))}
               </ul>
+              {product.href ? (
+                <Link
+                  href={product.href}
+                  className="mt-6 inline-flex h-10 items-center justify-center rounded-full bg-brand-gold px-5 text-sm font-semibold text-brand-dark transition-all hover:bg-brand-gold-glow hover:shadow-[0_0_16px_rgba(251,191,36,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+                >
+                  Open Beta Page
+                </Link>
+              ) : null}
             </div>
           ))}
         </div>
@@ -76,4 +86,3 @@ export function ProductsSection() {
     </section>
   );
 }
-

@@ -13,6 +13,9 @@ export function Header() {
           <Link href="/#products" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
             Products
           </Link>
+          <Link href="/products/reporter" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
+            Reporter Beta
+          </Link>
           <Link href="/utilities/truethick" className="transition-colors hover:text-brand-gold hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
             Utilities
           </Link>
@@ -26,14 +29,14 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <Link
-            href="#contact"
+            href="/#contact"
             className="hidden rounded-full bg-brand-gold px-5 py-2 text-sm font-semibold text-brand-dark transition-all hover:bg-brand-gold-glow hover:shadow-[0_0_15px_rgba(251,191,36,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark md:inline-flex"
           >
             Request early access
           </Link>
           {/* Mobile Menu Placeholder - can be expanded if needed, simplified for MVP */}
           <Link
-            href="#contact"
+            href="/#contact"
             className="md:hidden text-sm font-medium text-brand-gold"
           >
             Get Access
@@ -43,4 +46,3 @@ export function Header() {
     </header>
   );
 }
-

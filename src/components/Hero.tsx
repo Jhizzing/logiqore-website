@@ -17,7 +17,7 @@ export function Hero() {
                 Modern software for <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-amber-200">economic geologists</span>, built on real workflows.
               </h1>
               <p className="max-w-[600px] text-lg text-gray-400 md:text-xl">
-                LogiQore QAQC Reporter, Database, and AutoChem — a unified ecosystem for exploration and mine geology.
+                LogiQore Reporter, Database, and AutoChem — a unified ecosystem for exploration and mine geology.
               </p>
             </div>
 
@@ -81,4 +81,3 @@ export function Hero() {
     </section>
   );
 }
-
