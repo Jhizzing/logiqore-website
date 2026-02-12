@@ -4,6 +4,14 @@ import { LogoMark } from "./LogoMark";
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-brand-dark/80 backdrop-blur-md supports-[backdrop-filter]:bg-brand-dark/60">
+      <Link
+        href="/products/reporter"
+        className="block border-b border-brand-gold/25 bg-gradient-to-r from-brand-gold/20 via-brand-gold/10 to-brand-teal/10"
+      >
+        <div className="container mx-auto flex min-h-10 items-center justify-center px-4 text-center text-xs font-semibold tracking-wide text-brand-gold md:text-sm">
+          New: LogiQore Reporter Beta is live. Download the latest build.
+        </div>
+      </Link>
       <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
           <LogoMark className="h-24 w-24" />
