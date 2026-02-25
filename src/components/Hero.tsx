@@ -3,7 +3,7 @@ import { LogoMark } from "./LogoMark";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-32">
+    <section className="relative overflow-hidden pt-20 pb-16 md:pt-24 md:pb-24">
       {/* Background Elements */}
       <div className="absolute top-0 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-gold/5 blur-[120px]" />
       <div className="absolute bottom-0 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-brand-teal/5 blur-[100px]" />

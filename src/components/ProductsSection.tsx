@@ -78,7 +78,14 @@ export function ProductsSection() {
                 >
                   Open Beta Page
                 </Link>
-              ) : null}
+              ) : (
+                <button
+                  className="mt-6 inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 text-sm font-medium text-gray-400 transition-all hover:bg-white/10 hover:border-white/20"
+                  disabled
+                >
+                  Coming Soon
+                </button>
+              )}
             </div>
           ))}
         </div>
