@@ -12,6 +12,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500">
           <Link href="/#products" className="transition-colors hover:text-brand-gold">Products</Link>
           <Link href="/products/reporter" className="transition-colors hover:text-brand-gold">Reporter Beta</Link>
+          <Link href="/services" className="transition-colors hover:text-brand-gold">Services</Link>
           <Link href="/utilities/truethick" className="transition-colors hover:text-brand-gold">Utilities</Link>
           <Link href="/#contact" className="transition-colors hover:text-brand-gold">Contact</Link>
         </div>

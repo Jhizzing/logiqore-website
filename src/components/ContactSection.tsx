@@ -1,12 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
+
+const INTEREST_LABELS: Record<string, string> = {
+  database: "LogiQore Database",
+  autochem: "LogiQore AutoChem",
+  reporter: "LogiQore Reporter",
+  services: "QAQC Review Services",
+};
 
 export function ContactSection() {
   // REPLACE "YOUR_FORMSPREE_ID" WITH THE ID YOU GET FROM FORMSPREE.IO
   // Example: const [state, handleSubmit] = useForm("xzyqjklm");
   const [state, handleSubmit] = useForm("mqangevl");
+
+  // Waitlist intent arrives via ?interest=<product> (e.g. from product cards)
+  const [interest, setInterest] = useState<string>("");
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("interest");
+    if (param && INTEREST_LABELS[param]) {
+      const id = setTimeout(() => setInterest(param), 0);
+      return () => clearTimeout(id);
+    }
+  }, []);
 
   if (state.succeeded) {
     return (
@@ -55,6 +72,13 @@ export function ContactSection() {
 
         <div className="mx-auto mt-12 max-w-xl">
             <form onSubmit={handleSubmit} className="space-y-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+              {interest && (
+                <div className="rounded-lg border border-brand-gold/30 bg-brand-gold/10 px-4 py-3 text-sm text-brand-gold">
+                  You&apos;re joining the waitlist for <strong>{INTEREST_LABELS[interest]}</strong>.
+                  We&apos;ll let you know the moment it&apos;s available.
+                </div>
+              )}
+              <input type="hidden" name="interest" value={interest ? INTEREST_LABELS[interest] : "General early access"} />
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                   Email address <span className="text-brand-gold">*</span>

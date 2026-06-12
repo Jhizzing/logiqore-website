@@ -17,6 +17,7 @@ const products = [
     id: "database",
     name: "LogiQore Database",
     badge: "Geology data platform",
+    waitlistHref: "/?interest=database#contact",
     description: [
       "Drillhole, sample, assay and QAQC tables with validation.",
       "Integration points for Leapfrog, ioGAS, ArcGIS, mine planning tools.",
@@ -27,6 +28,7 @@ const products = [
     id: "autochem",
     name: "LogiQore AutoChem",
     badge: "Lithogeochemistry engine",
+    waitlistHref: "/?interest=autochem#contact",
     description: [
       "Geochemical cleaning/merging, ternary/XY diagram classification.",
       "Interval interpretation from point data.",
@@ -79,12 +81,17 @@ export function ProductsSection() {
                   Open Beta Page
                 </Link>
               ) : (
-                <button
-                  className="mt-6 inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 text-sm font-medium text-gray-400 transition-all hover:bg-white/10 hover:border-white/20"
-                  disabled
-                >
-                  Coming Soon
-                </button>
+                <div className="mt-6 flex items-center gap-3">
+                  <Link
+                    href={product.waitlistHref ?? "/#contact"}
+                    className="inline-flex h-10 items-center justify-center rounded-full border border-brand-gold/40 px-5 text-sm font-semibold text-brand-gold transition-all hover:bg-brand-gold/10 hover:border-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+                  >
+                    Join Waitlist
+                  </Link>
+                  <span className="text-xs font-medium uppercase tracking-wide text-gray-500">
+                    Coming Soon
+                  </span>
+                </div>
               )}
             </div>
           ))}
