@@ -14,7 +14,7 @@ export function Header() {
         className="block border-b border-brand-gold/25 bg-gradient-to-r from-brand-gold/20 via-brand-gold/10 to-brand-teal/10"
       >
         <div className="container mx-auto flex min-h-10 items-center justify-center px-4 text-center text-xs font-semibold tracking-wide text-brand-gold md:text-sm">
-          New: LogiQore Reporter Beta is live. Download the latest build.
+          New: LogiQore Reporter Beta is live — run it in your browser, no install needed.
         </div>
       </Link>
       <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-6">
