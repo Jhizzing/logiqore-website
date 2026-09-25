@@ -1,20 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { LogoMark } from "./LogoMark";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    }
+
+    function onPointerDown(event: PointerEvent) {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-brand-dark/80 backdrop-blur-md supports-[backdrop-filter]:bg-brand-dark/60">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 w-full border-b border-white/10 bg-brand-dark/80 backdrop-blur-md supports-[backdrop-filter]:bg-brand-dark/60"
+    >
       <Link
         href="/products/reporter"
         className="block border-b border-brand-gold/25 bg-gradient-to-r from-brand-gold/20 via-brand-gold/10 to-brand-teal/10"
       >
         <div className="container mx-auto flex min-h-10 items-center justify-center px-4 text-center text-xs font-semibold tracking-wide text-brand-gold md:text-sm">
-          New: LogiQore Reporter Beta is live — run it in your browser, no install needed.
+          New: LogiQore Reporter Beta — QAQC reporting in your browser, no install needed.
         </div>
       </Link>
       <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-6">
@@ -49,9 +78,13 @@ export function Header() {
           </Link>
           
           <button
+            ref={toggleRef}
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-gray-400 hover:bg-white/5 lg:hidden"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMenuOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
@@ -68,7 +101,10 @@ export function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="absolute inset-x-0 top-full flex flex-col border-b border-white/10 bg-brand-dark/fb95 animate-in fade-in slide-in-from-top-4 lg:hidden">
+        <div
+          id="mobile-menu"
+          className="absolute inset-x-0 top-full flex flex-col border-b border-white/10 bg-brand-dark/95 shadow-2xl backdrop-blur-md lg:hidden"
+        >
           <nav className="flex flex-col p-4 space-y-4 text-center">
             <Link href="/#products" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-gray-300 hover:text-brand-gold">
               Products
