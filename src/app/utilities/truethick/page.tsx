@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "TrueThick Utility | Structural Orientation & True Thickness Analysis",
-    description: "Free geological tool to solve for structural dip, dip direction, and calculate intercept true thickness for geological logging.",
+    description: "Free geological tool to solve for structural dip, dip direction, and calculate intercept true thickness. Professional accuracy for geological logging.",
     keywords: ["structural dip", "dip direction", "calculate true thickness", "intercept true thickness", "structural orientation", "geological logging tool", "structural geology analysis"],
 };
 
@@ -20,7 +20,7 @@ export default function TrueThickPage() {
                             TrueThick <span className="text-brand-gold">Utility</span>
                         </h1>
                         <p className="mx-auto max-w-2xl text-lg text-gray-400 mb-8">
-                            Structural Orientation & True Thickness Analysis. A modern tool for geologists to solve dip, dip direction, and true thickness from drillhole intercepts.
+                            Professional Structural Orientation & True Thickness Analysis. A modern tool for geologists to solve dip, dip direction, and true thickness from drillhole intercepts.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-500 max-w-4xl mx-auto mb-12 text-left">
@@ -43,7 +43,7 @@ export default function TrueThickPage() {
                                     <span className="h-1.5 w-1.5 rounded-full bg-brand-teal" />
                                     Professional Logging
                                 </h3>
-                                <p>Designed for economic geologists. Streamline your structural logging workflow. Always check results against your own calculations before reporting.</p>
+                                <p>Designed for economic geologists. Streamline your structural logging workflow with industry-standard accuracy.</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ export default function TrueThickPage() {
                                 display: "block",
                             }}
                             title="TrueThick Utility App"
-                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                            sandbox="allow-scripts"
                             referrerPolicy="no-referrer"
                             loading="lazy"
                         ></iframe>
