@@ -34,6 +34,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: TrueThick geometry tests
+        run: npm run test:geo
+
       - name: npm audit
         run: npm audit
 
