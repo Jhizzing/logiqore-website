@@ -28,8 +28,8 @@ export function WhySection() {
                 text: "Workflows that match how geologists actually think and operate in the field.",
               },
               {
-                title: "AI-ready stack",
-                text: "Structured data schemas designed to feed machine learning models from day one.",
+                title: "Structured data",
+                text: "Clean, consistently structured tables, so your data is ready for analysis and future machine-learning workflows.",
               },
               {
                 title: "Transparent & controllable",
@@ -37,7 +37,7 @@ export function WhySection() {
               },
               {
                 title: "Built to integrate",
-                text: "Seamlessly connects with Leapfrog, Micromine, and other industry standards.",
+                text: "Standard CSV and Word outputs that slot into Leapfrog, Micromine and your reporting workflow. Direct integrations are on the roadmap.",
               },
             ].map((tile, index) => (
               <div

@@ -14,7 +14,7 @@ export function TrueThickPromo() {
                             Try <span className="text-brand-gold">TrueThick</span> Now
                         </h2>
                         <p className="text-lg text-gray-400">
-                            Modern Structural Orientation & True Thickness Analysis. Professional accuracy for geological logging, right in your browser.
+                            Modern Structural Orientation & True Thickness Analysis for geological logging, right in your browser.
                         </p>
                     </div>
                     <div className="flex-shrink-0">
