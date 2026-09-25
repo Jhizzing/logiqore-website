@@ -57,7 +57,7 @@ const FEATURES = [
   {
     title: "Nothing to install",
     description:
-      "Reporter runs in your browser. No IT approvals, no installers, no OS security warnings — open the app and start validating.",
+      "Reporter opens in your browser. No IT approvals, no installers, no OS security warnings — open the app and start validating.",
   },
   {
     title: "Built for photon gold assay",
@@ -72,7 +72,7 @@ const FEATURES = [
   {
     title: "Your data stays yours",
     description:
-      "Sessions are processed in memory for the duration of your analysis and are not retained. Export your results and go.",
+      "Your file is uploaded to our server only to run your analysis. Uploads, results and any custom CRMs you add are deleted automatically after 60 minutes of inactivity, and never kept longer than 4 hours. Word reports are deleted as soon as they download, and \"Reset Data\" deletes everything immediately. No account, no database, no copies kept.",
   },
 ];
 
@@ -98,7 +98,7 @@ export default function ReporterPage() {
 
           <ReporterLaunchButton />
           <p className="mt-4 text-sm text-gray-500">
-            Free while in beta · No account required · Works on any modern browser
+            Free while in beta · No account required · Uploads auto-deleted after 60 min idle
           </p>
         </div>
       </section>

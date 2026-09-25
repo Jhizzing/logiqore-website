@@ -152,6 +152,29 @@ test.describe("TrueThick", () => {
   });
 });
 
+test.describe("Reporter data-retention copy", () => {
+  test("Reporter page states the session retention policy", async ({ page }) => {
+    await page.route(HEALTH_URL, (route) => route.abort());
+    await page.goto("/products/reporter");
+    const main = page.locator("main");
+
+    await expect(main).toContainText(
+      "Uploads, results and any custom CRMs you add are deleted automatically after 60 minutes of inactivity, and never kept longer than 4 hours.",
+    );
+    await expect(main).toContainText("No account, no database, no copies kept.");
+    await expect(main).toContainText("Free while in beta · No account required · Uploads auto-deleted after 60 min idle");
+    await expect(main).not.toContainText(/not retained|processed in memory|never leaves/i);
+  });
+
+  test("privacy policy covers Reporter session data", async ({ page }) => {
+    await page.goto("/privacy");
+    await expect(page.getByRole("heading", { name: "LogiQore Reporter" })).toBeVisible();
+    await expect(page.locator("main")).toContainText(
+      "Session data is deleted after 60 minutes without activity (4 hours at most), and whenever the service restarts.",
+    );
+  });
+});
+
 test.describe("Reporter launch button", () => {
   test("shows the offline state when the health check fails", async ({ page }) => {
     await page.route(HEALTH_URL, (route) => route.abort("internetdisconnected"));
