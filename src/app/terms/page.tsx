@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | LogiQore",
+  description: "The terms that apply when you use the LogiQore website and its free utilities.",
+  alternates: { canonical: "/terms" },
+};
 
 export default function TermsPage() {
   return (
