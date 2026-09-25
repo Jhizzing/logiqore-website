@@ -79,6 +79,12 @@ const trueThickFrameHeaders = [
     key: "Content-Security-Policy",
     value: [...cspDirectives, "frame-ancestors 'self'"].join("; "),
   },
+  // The embed is sandboxed without allow-same-origin, so it runs with an opaque
+  // ("null") origin and its ES module scripts are CORS requests.
+  {
+    key: "Access-Control-Allow-Origin",
+    value: "*",
+  },
 ];
 
 const nextConfig: NextConfig = {

@@ -30,12 +30,15 @@ Run these before opening a PR:
 npm run lint
 npm run typecheck
 npm audit
+npm run test:geo
 npm run build
 npx playwright install chromium   # first time only
 npm run test:e2e
 ```
 
-`npm run test:e2e` runs the Playwright smoke tests in `tests/` against the production build (`next start` on port 3100). They check that every route renders without CSP violations, that the mobile menu at 390 px is opaque and closes properly, that TrueThick's default case gives 7.04 m at alpha 44.7°, and that the Reporter Launch button handles a healthy or failing `/api/health` (both mocked). GitHub Actions (`.github/workflows/ci.yml`) runs all of these checks on every pull request and on every push to `main`.
+`npm run test:geo` runs the TrueThick geometry tests: known answers, round trips and edge cases.
+
+`npm run test:e2e` runs the Playwright smoke tests in `tests/` against the production build (`next start` on port 3100). They check that every route renders without CSP violations, and that the mobile menu at 390 px is opaque and closes properly. They also check TrueThick: it runs sandboxed with an opaque origin, its kenometer default gives dip 57.8° and dip direction 77.2°, its dip/dip-direction default gives alpha 44.7° and beta 105.9°, and its intercept default gives 7.04 m at alpha 44.7°. Finally, they check that the Reporter Launch button handles a healthy or failing `/api/health` (both mocked). GitHub Actions (`.github/workflows/ci.yml`) runs all of these checks on every pull request and on every push to `main`.
 
 To try the production build locally, run `npm run build && npm start`.
 
@@ -49,7 +52,8 @@ To try the production build locally, run `npm run build && npm start`.
 | `src/app/utilities/truethick/` | Page that embeds TrueThick in a sandboxed iframe |
 | `src/app/privacy/`, `src/app/terms/` | Legal pages |
 | `src/app/sitemap.ts`, `src/app/robots.ts` | SEO routes |
-| `public/truethick/index.html` | TrueThick, a self-contained HTML/JS tool. It's a copy of the [TrueThick repo](https://github.com/jhizzing/TrueThick), so keep the two in sync |
+| `public/truethick/` | TrueThick, a static HTML/JS tool. `geo.js` is the geometry engine, `app.js` is the UI and `index.html` is the page. This folder is now the source of truth, taken from the [TrueThick repo](https://github.com/jhizzing/TrueThick) at v3.2. It's embedded in an iframe with `sandbox="allow-scripts"`, so it runs with an opaque origin, and `next.config.ts` sends `Access-Control-Allow-Origin: *` on `/truethick/*` so that its module scripts can load |
+| `tests/truethick/geo.test.mjs` | `node:test` suite for the geometry engine (`npm run test:geo`) |
 | `next.config.ts` | Security headers and CSP. `/truethick/*` may be framed by this site, and every other route sends `frame-ancestors 'none'` |
 
 ## Configuration

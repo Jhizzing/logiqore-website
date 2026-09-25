@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:geo": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/truethick/geo.test.mjs",
     "test:e2e": "playwright test"
   },
   "dependencies": {
