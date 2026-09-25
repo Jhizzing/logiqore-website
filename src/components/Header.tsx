@@ -103,7 +103,7 @@ export function Header() {
       {isMenuOpen && (
         <div
           id="mobile-menu"
-          className="absolute inset-x-0 top-full flex flex-col border-b border-white/10 bg-brand-dark/95 shadow-2xl backdrop-blur-md lg:hidden"
+          className="absolute inset-x-0 top-full flex flex-col border-b border-white/10 bg-brand-dark/95 shadow-2xl lg:hidden"
         >
           <nav className="flex flex-col p-4 space-y-4 text-center">
             <Link href="/#products" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-gray-300 hover:text-brand-gold">
