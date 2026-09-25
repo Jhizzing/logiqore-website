@@ -28,10 +28,14 @@ Run these before opening a PR:
 
 ```bash
 npm run lint
-npx tsc --noEmit
-npm run build
+npm run typecheck
 npm audit
+npm run build
+npx playwright install chromium   # first time only
+npm run test:e2e
 ```
+
+`npm run test:e2e` runs the Playwright smoke tests in `tests/` against the production build (`next start` on port 3100). They check that every route renders without CSP violations, that the mobile menu at 390 px is opaque and closes properly, that TrueThick's default case gives 7.04 m at alpha 44.7°, and that the Reporter Launch button handles a healthy or failing `/api/health` (both mocked). GitHub Actions (`.github/workflows/ci.yml`) runs all of these checks on every pull request and on every push to `main`.
 
 To try the production build locally, run `npm run build && npm start`.
 
