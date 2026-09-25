@@ -12,8 +12,8 @@ export function LogoMark({ className = "w-8 h-8" }: LogoMarkProps) {
         src="/logo.png"
         alt="LogiQore Logo"
         fill
+        sizes="128px"
         className="object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]"
-        priority
       />
     </div>
   );

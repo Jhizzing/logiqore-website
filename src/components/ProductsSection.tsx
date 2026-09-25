@@ -8,7 +8,7 @@ const products = [
     badge: "QAQC automation",
     href: "/products/reporter",
     description: [
-      "Upload assay and pXRF data from labs or databases.",
+      "Upload gold and PhotonAssay exports from your lab or database.",
       "Generate control charts, bias plots, duplicates stats.",
       "Export figures and tables ready to drop into JORC QAQC reports.",
     ],
@@ -19,9 +19,9 @@ const products = [
     badge: "Geology data platform",
     waitlistHref: "/?interest=database#contact",
     description: [
-      "Drillhole, sample, assay and QAQC tables with validation.",
-      "Integration points for Leapfrog, ioGAS, ArcGIS, mine planning tools.",
-      "Audit trails and AI-ready schema.",
+      "Drillhole, sample and assay tables in one shared, multi-user store.",
+      "Leapfrog / Datamine-ready CSV export.",
+      "On the roadmap: QAQC tables, validation rules, audit trails and ioGAS / ArcGIS integration.",
     ],
   },
   {

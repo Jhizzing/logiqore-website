@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-
-const APP_URL = "https://app.logiqore.io";
+import { ReporterLaunchButton } from "@/components/ReporterLaunchButton";
 
 export const metadata: Metadata = {
   title: "LogiQore Reporter Beta | QAQC Reporting for Gold Assay Data",
@@ -97,22 +96,7 @@ export default function ReporterPage() {
             minutes — not an afternoon.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-brand-gold px-8 text-base font-semibold text-brand-dark transition-all hover:bg-brand-gold-glow hover:shadow-[0_0_20px_rgba(251,191,36,0.45)]"
-            >
-              Launch Reporter Beta
-            </Link>
-            <Link
-              href="/#contact"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-8 text-base font-semibold text-gray-200 transition-colors hover:border-brand-gold/50 hover:text-brand-gold"
-            >
-              Talk to us first
-            </Link>
-          </div>
+          <ReporterLaunchButton />
           <p className="mt-4 text-sm text-gray-500">
             Free while in beta · No account required · Works on any modern browser
           </p>

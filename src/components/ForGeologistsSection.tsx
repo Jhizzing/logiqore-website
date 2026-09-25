@@ -60,8 +60,8 @@ export function ForGeologistsSection() {
 
                 {[
                   { title: "QAQC Reporter", status: "Beta", current: true },
-                  { title: "AutoChem", status: "Early Access", current: false },
-                  { title: "Database", status: "Launch Coming Soon", current: false },
+                  { title: "AutoChem", status: "Coming Soon", current: false },
+                  { title: "Database", status: "Coming Soon", current: false },
                 ].map((item, i) => (
                   <div key={i} className="relative flex items-center gap-4">
                     <div
