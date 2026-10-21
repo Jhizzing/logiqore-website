@@ -29,12 +29,14 @@ Run these before opening a PR:
 ```bash
 npm run lint
 npm run typecheck
-npm audit
+npm run audit:ci
 npm run test:geo
 npm run build
 npx playwright install chromium   # first time only
 npm run test:e2e
 ```
+
+`npm run audit:ci` runs `npm audit` and fails on every advisory except those listed in `scripts/audit.mjs`. Each allowlisted advisory has no patched release and affects dev tooling only. It also fails as soon as an allowlisted advisory gets a fix, so the entry can't linger. Production dependencies must be fully clean (`npm audit --omit=dev`).
 
 `npm run test:geo` runs the TrueThick geometry tests: known answers, round trips and edge cases.
 
