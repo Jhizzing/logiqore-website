@@ -11,8 +11,6 @@ const INTEREST_LABELS: Record<string, string> = {
 };
 
 export function ContactSection() {
-  // REPLACE "YOUR_FORMSPREE_ID" WITH THE ID YOU GET FROM FORMSPREE.IO
-  // Example: const [state, handleSubmit] = useForm("xzyqjklm");
   const [state, handleSubmit] = useForm("mqangevl");
 
   // Waitlist intent arrives via ?interest=<product> (e.g. from product cards)
@@ -79,6 +77,15 @@ export function ContactSection() {
                 </div>
               )}
               <input type="hidden" name="interest" value={interest ? INTEREST_LABELS[interest] : "General early access"} />
+              {/* Formspree honeypot: bots fill it, Formspree silently drops those submissions. */}
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden opacity-0"
+              />
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                   Email address <span className="text-brand-gold">*</span>

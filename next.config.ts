@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
+import { REPORTER_APP_URL } from "./src/lib/reporter";
+
+// React needs eval in development only, for server error stack reconstruction.
+const isDev = process.env.NODE_ENV === "development";
+
+const reporterOrigin = REPORTER_APP_URL ? ` ${new URL(REPORTER_APP_URL).origin}` : "";
 
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
-  "font-src 'self' https://fonts.gstatic.com",
-  "connect-src 'self' https://formspree.io https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+  "font-src 'self'",
+  `connect-src 'self' https://formspree.io https://va.vercel-scripts.com https://vitals.vercel-insights.com${reporterOrigin}`,
   "frame-src 'self'",
   "base-uri 'self'",
   "form-action 'self' https://formspree.io",
