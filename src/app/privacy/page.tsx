@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <div className="container mx-auto max-w-3xl">
           <h1 className="text-4xl font-bold mb-8 text-brand-gold">Privacy Policy</h1>
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
-            <p>Last updated: February 26, 2026</p>
+            <p>Last updated: September 25, 2026</p>
             <p>
               At LogiQore, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.
             </p>
@@ -28,11 +28,15 @@ export default function PrivacyPage() {
             <p>
               We use your contact information to respond to your inquiries and provide updates about our products and services. Usage data is used for internal analysis only.
             </p>
-            <h2 className="text-2xl font-semibold text-white">3. Data Security</h2>
+            <h2 className="text-2xl font-semibold text-white">3. LogiQore Reporter</h2>
+            <p>
+              Reporter processes your assay file on LogiQore&apos;s server for the length of your session only. Nothing is stored in a database or shared between users; each upload is isolated under a random session ID. Session data is deleted after 60 minutes without activity (4 hours at most), and whenever the service restarts. Standard server logs record requests (such as time and IP address) but not the contents of your file.
+            </p>
+            <h2 className="text-2xl font-semibold text-white">4. Data Security</h2>
             <p>
               We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure.
             </p>
-            <h2 className="text-2xl font-semibold text-white">4. Your Rights</h2>
+            <h2 className="text-2xl font-semibold text-white">5. Your Rights</h2>
             <p>
               You have the right to access, correct, or delete your personal information. Please contact us at paz@logiqore.io for any requests.
             </p>
