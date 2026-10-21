@@ -30,8 +30,10 @@ Run these before opening a PR:
 npm run lint
 npx tsc --noEmit
 npm run build
-npm audit
+npm run audit:ci
 ```
+
+`npm run audit:ci` runs `npm audit` and fails on every advisory except those listed in `scripts/audit.mjs`. Each allowlisted advisory has no patched release and affects dev tooling only. It also fails as soon as an allowlisted advisory gets a fix, so the entry can't linger. Production dependencies must be fully clean (`npm audit --omit=dev`).
 
 To try the production build locally, run `npm run build && npm start`.
 
