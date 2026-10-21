@@ -38,7 +38,7 @@ jobs:
         run: npm run test:geo
 
       - name: npm audit
-        run: npm audit
+        run: npm run audit:ci
 
       - name: Build
         run: npm run build
