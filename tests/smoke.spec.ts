@@ -122,11 +122,33 @@ test.describe("TrueThick", () => {
     await expect(metrics).toContainText("44.7°");
   });
 
-  test("orientation solver dip/dip-direction default case gives alpha 44.7°", async ({ page }) => {
+  test("runs isolated from the site origin", async ({ page }) => {
+    const tool = await openTool(page);
+    await expect(page.locator("iframe[title='TrueThick Utility App']")).toHaveAttribute("sandbox", "allow-scripts");
+    await expect(tool.locator("html")).toHaveClass(/js-ready/);
+    const frame = page.frames().find((f) => f.url().endsWith("/truethick/index.html"));
+    expect(frame, "TrueThick frame attached").toBeDefined();
+    expect(await frame!.evaluate(() => self.origin)).toBe("null");
+  });
+
+  test("orientation solver kenometer default case: dip 57.8°, dip direction 77.2°", async ({ page }) => {
+    const tool = await openTool(page);
+    await expect(tool.locator("#t1-alpha")).toHaveValue("60");
+    await expect(tool.locator("#t1-beta")).toHaveValue("30");
+
+    await tool.locator("#btn-solve").click();
+    const metrics = tool.locator("#orient-metrics .metric-value");
+    await expect(metrics.nth(0)).toHaveText("57.8°");
+    await expect(metrics.nth(1)).toHaveText("77.2°");
+  });
+
+  test("orientation solver dip/dip-direction default case: alpha 44.7°, beta 105.9°", async ({ page }) => {
     const tool = await openTool(page);
     await tool.locator("label[for='mode-dd']").click();
     await tool.locator("#btn-solve").click();
-    await expect(tool.locator("#orient-metrics .metric").first()).toContainText("44.7°");
+    const metrics = tool.locator("#orient-metrics .metric-value");
+    await expect(metrics.nth(0)).toHaveText("44.7°");
+    await expect(metrics.nth(1)).toHaveText("105.9°");
   });
 });
 

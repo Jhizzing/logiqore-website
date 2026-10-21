@@ -6,6 +6,7 @@ const baseURL = `http://localhost:${PORT}`;
 // Smoke tests run against the production build: run `npm run build` first.
 export default defineConfig({
   testDir: "./tests",
+  testMatch: "**/*.spec.ts",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
