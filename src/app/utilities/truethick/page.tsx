@@ -50,7 +50,7 @@ export default function TrueThickPage() {
 
                     <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-1 backdrop-blur-sm shadow-2xl">
                         <iframe
-                            src="/truethick/index.html"
+                            src="/truethick/"
                             style={{
                                 height: "900px",
                                 width: "100%",

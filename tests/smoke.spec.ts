@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import { REPORTER_APP_URL, REPORTER_HEALTH_PATH } from "../src/lib/reporter";
+import { siteHeaders, trueThickHeaders, type Header } from "../src/lib/security-headers";
 
 const PAGES = [
   { path: "/", heading: /Modern software for/ },
@@ -58,6 +59,41 @@ test.describe("routes", () => {
   test("unknown routes return 404", async ({ page }) => {
     const response = await page.goto("/definitely-not-a-page");
     expect(response?.status()).toBe(404);
+  });
+});
+
+test.describe("security headers", () => {
+  function expectHeaders(actual: Record<string, string>, expected: Header[]) {
+    for (const { key, value } of expected) {
+      expect(actual[key.toLowerCase()], key).toBe(value);
+    }
+  }
+
+  for (const path of ["/", "/products/reporter", "/utilities/truethick", "/robots.txt", "/logo.png"]) {
+    test(`${path} is never framed`, async ({ request }) => {
+      const response = await request.get(path);
+      expect(response.status()).toBe(200);
+      expectHeaders(response.headers(), siteHeaders);
+      expect(response.headers()["access-control-allow-origin"]).toBeUndefined();
+    });
+  }
+
+  test("unknown routes keep the site headers on the 404 page", async ({ request }) => {
+    const response = await request.get("/definitely-not-a-page");
+    expect(response.status()).toBe(404);
+    expectHeaders(response.headers(), siteHeaders);
+  });
+
+  for (const path of ["/truethick/", "/truethick/app.js", "/truethick/geo.js"]) {
+    test(`${path} may be framed by this site and allows CORS`, async ({ request }) => {
+      const response = await request.get(path);
+      expect(response.status()).toBe(200);
+      expectHeaders(response.headers(), trueThickHeaders);
+    });
+  }
+
+  test("the _headers file itself is not served", async ({ request }) => {
+    expect((await request.get("/_headers")).status()).toBe(404);
   });
 });
 
@@ -126,7 +162,7 @@ test.describe("TrueThick", () => {
     const tool = await openTool(page);
     await expect(page.locator("iframe[title='TrueThick Utility App']")).toHaveAttribute("sandbox", "allow-scripts");
     await expect(tool.locator("html")).toHaveClass(/js-ready/);
-    const frame = page.frames().find((f) => f.url().endsWith("/truethick/index.html"));
+    const frame = page.frames().find((f) => f.url().endsWith("/truethick/"));
     expect(frame, "TrueThick frame attached").toBeDefined();
     expect(await frame!.evaluate(() => self.origin)).toBe("null");
   });
